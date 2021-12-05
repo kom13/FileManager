@@ -38,7 +38,9 @@ namespace Курсовая
             this.FileType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BackButton = new System.Windows.Forms.ToolStripButton();
             this.FilePathTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.ListDisk = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CreateFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +52,6 @@ namespace Курсовая
             this.Rename = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.Reflesh = new System.Windows.Forms.ToolStripMenuItem();
-            this.BackButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             imageList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -90,23 +90,23 @@ namespace Курсовая
             // namr
             // 
             this.namr.Text = "Имя";
-            this.namr.Width = 152;
+            this.namr.Width = 225;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Tag = "";
             this.columnHeader2.Text = "Дата изменения";
-            this.columnHeader2.Width = 136;
+            this.columnHeader2.Width = 130;
             // 
             // FileType
             // 
             this.FileType.Text = "Тип файла";
-            this.FileType.Width = 129;
+            this.FileType.Width = 130;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "размер";
-            this.columnHeader4.Width = 136;
+            this.columnHeader4.Width = 145;
             // 
             // toolStrip1
             // 
@@ -120,9 +120,19 @@ namespace Курсовая
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(64, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(801, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(840, 27);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BackButton
+            // 
+            this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
+            this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(29, 24);
+            this.BackButton.Text = "toolStripButton2";
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // FilePathTextBox
             // 
@@ -131,6 +141,15 @@ namespace Курсовая
             this.FilePathTextBox.Name = "FilePathTextBox";
             this.FilePathTextBox.Size = new System.Drawing.Size(740, 27);
             this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton3.Text = "toolStripButton1";
             // 
             // ListDisk
             // 
@@ -220,28 +239,11 @@ namespace Курсовая
             this.Reflesh.Text = "Обновить";
             this.Reflesh.Click += new System.EventHandler(this.Reflesh_Click);
             // 
-            // BackButton
-            // 
-            this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
-            this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(29, 24);
-            this.BackButton.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButton3.Text = "toolStripButton1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(882, 503);
             this.Controls.Add(this.ListDisk);
             this.Controls.Add(this.toolStrip1);

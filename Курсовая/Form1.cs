@@ -15,6 +15,8 @@ namespace Курсовая
 
         private string[] SelectedFiles = new string[200];
 
+        private char slash = '\\';
+
         public Form1()
         {
             InitializeComponent();
@@ -336,6 +338,7 @@ namespace Курсовая
             }
         }
 
+        //копирует данные в папке
         private void CopyAndPasteDirectory(DirectoryInfo files, DirectoryInfo destDirInfo)
         {
             //Создать целевую папку
@@ -413,6 +416,7 @@ namespace Курсовая
             }
         }
 
+        //копирование или перемещение для папки
         private void MoveOrCopyToFile(string sourcePath)
         {
             try
@@ -448,6 +452,7 @@ namespace Курсовая
 
         }
 
+        //копирование или перемещение для файла
         private void MoveOrCopyToFolder(string sourcePath)
         {
             try
@@ -549,6 +554,41 @@ namespace Курсовая
                         e.CancelEdit = true;
                     }
                 }
+            }
+        }
+
+        //кнопка назад
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = 0;
+
+                string path = FilePathTextBox.Text;
+
+                path = path.Substring(0, path.LastIndexOf(slash));
+
+                foreach (var i in path)
+                {
+                    if (i == slash)
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 0)
+                {
+                    ShowFileList(path + slash);
+                }
+                else
+                {
+                    ShowFileList(path);
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Произшла ошибка", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
