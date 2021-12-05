@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Курсовая
 {
@@ -56,14 +57,12 @@ namespace Курсовая
                 //Список всех файлов
                 foreach (FileInfo fileInfo in files)
                 {
+                    //если файл .txt
                     if (fileInfo.Extension == ".txt")
                     {
-                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 4);
-
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 3);
                         item.Tag = fileInfo.FullName;
-
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
-
                         item.SubItems.Add(fileInfo.Extension);
 
                         if (fileInfo.Length <= 1024)
@@ -79,14 +78,35 @@ namespace Курсовая
                             item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2)} МБ");
                         }
                     }
+
+                    //если файл .bmp
+                    else if (fileInfo.Extension == ".bmp")
+                    {
+                        ListViewItem item;
+                        item = ListFiles.Items.Add(fileInfo.Name, 5);
+                        item.Tag = fileInfo.FullName;
+                        item.SubItems.Add(fileInfo.LastWriteTime.ToString());
+                        item.SubItems.Add(fileInfo.Extension);
+
+                        if (fileInfo.Length <= 1024)
+                        {
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2)} байт");
+                        }
+                        else if (fileInfo.Length <= (1024 * 1024))
+                        {
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2)} КБ");
+                        }
+                        else
+                        {
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2)} МБ");
+                        }
+                    }
+                    //другие файлы
                     else
                     {
-                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name);
-
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 6);
                         item.Tag = fileInfo.FullName;
-
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
-
                         item.SubItems.Add(fileInfo.Extension + "");
 
                         if (fileInfo.Length <= 1024)
@@ -200,7 +220,7 @@ namespace Курсовая
 
             if (e.Button == MouseButtons.Right)
             {
-                contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+                contextMenuStrip.Show(MousePosition.X, MousePosition.Y);
             }
         }
 
@@ -256,7 +276,7 @@ namespace Курсовая
         }
 
         //обновить список
-        private void Reflesh_Click(object sender, EventArgs e)
+        private void Refresh_Click(object sender, EventArgs e)
         {
             FilePath = FilePathTextBox.Text;
 
@@ -264,6 +284,7 @@ namespace Курсовая
 
             DiskLists();
         }
+
 
         //кнопка назад
         private void BackButton_Click(object sender, EventArgs e)
@@ -302,7 +323,7 @@ namespace Курсовая
         //обновление кнопкой
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            Reflesh_Click(sender, e);
+            Refresh_Click(sender, e);
         }
 
         //удалить
@@ -520,7 +541,7 @@ namespace Курсовая
             bool validation = true;
 
             //недопустимые символы
-            string symbol = "\\/:*?\"<>|";
+            string symbol = "<>:/\\?'|\"";
 
             for (int i = 0; i < symbol.Length; i++)
             {
@@ -537,8 +558,105 @@ namespace Курсовая
         //переименовать файл/папку
         private void Rename_Click(object sender, EventArgs e)
         {
-            ListFiles.SelectedItems[0].BeginEdit();
+            try
+            {
+                ListFiles.SelectedItems[0].BeginEdit();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Чтобы переименовать, нужно выделить папку/файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        //кнопка вперед
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            FilePath = FilePathTextBox.Text;
+
+            if (FilePath == "")
+            {
+                return;
+            }
+            else if (!Directory.Exists(FilePath))
+            {
+                return;
+            }
+
+            ShowFileList(FilePath);
+        }
+
+        //сохранение измений переименования
+        private void ListFiles_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            string newName = e.Label;
+
+            ListViewItem item = ListFiles.SelectedItems[0];
+
+            if (string.IsNullOrEmpty(newName))
+            {
+                MessageBox.Show("Имя не должно быть пустым.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //Отменить изменения
+                e.CancelEdit = true;
+            }
+            //Имя файла содержит недопустимые символы
+            else if (!IsValidFileName(newName))
+            {
+                MessageBox.Show("Имя не должно содержать следующие символы:\n" + "< > : / \\ ? ' \" | *", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //Отменить изменения
+                e.CancelEdit = true;
+            }
+            //Если имя файла повторяется
+            else if (File.Exists(Path.Combine(FilePath, newName)))
+            {
+                MessageBox.Show("В текущем пути есть файл с таким же именем.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //Отменить изменения
+                e.CancelEdit = true;
+            }
+            else
+            {
+                //получаю путь со старым именем файла
+                string oldPath = Path.Combine(FilePathTextBox.Text, item.Tag.ToString());
+
+                //если это файл
+                if (File.Exists(oldPath))
+                {
+                    //изменяю имя файла
+                    FileSystem.RenameFile(oldPath, newName);
+                }
+                //если это папка
+                else if (Directory.Exists(oldPath))
+                {
+                    //изменяю имя папки
+                    FileSystem.RenameDirectory(oldPath, newName);
+                }
+            }
+        }
+
+        //Большие значки
+        private void LargeIcon_Click(object sender, EventArgs e)
+        {
+            ListFiles.View = View.LargeIcon;
+        }
+
+        //режим список
+        private void ListIcon_Click(object sender, EventArgs e)
+        {
+            ListFiles.View = View.List;
+        }
+
+        //режим детали
+        private void DetalsIcon_Click(object sender, EventArgs e)
+        {
+            ListFiles.View = View.Details;
+        }
+
+        //режим плитка
+        private void TileIcon_Click(object sender, EventArgs e)
+        {
+            ListFiles.View = View.Tile;
+        }
     }
 }
