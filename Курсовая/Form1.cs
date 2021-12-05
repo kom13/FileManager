@@ -67,15 +67,15 @@ namespace Курсовая
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 3)} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 3)} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 3)} МБ");
                         }
                     }
 
@@ -90,15 +90,15 @@ namespace Курсовая
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 5)} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 5)} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 5)} МБ");
                         }
                     }
                     //другие файлы
@@ -111,15 +111,15 @@ namespace Курсовая
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 6)} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 6)} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 6)} МБ");
                         }
                     }
                 }
@@ -657,6 +657,11 @@ namespace Курсовая
         private void TileIcon_Click(object sender, EventArgs e)
         {
             ListFiles.View = View.Tile;
+        }
+
+        private void SmallIcon_Click(object sender, EventArgs e)
+        {
+            ListFiles.View = View.SmallIcon;
         }
     }
 }

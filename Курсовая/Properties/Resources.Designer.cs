@@ -73,26 +73,6 @@ namespace Курсовая.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _forward_90600__1_ {
-            get {
-                object obj = ResourceManager.GetObject("-forward_90600 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Details_Popup_icon_icons_com_55930 {
-            get {
-                object obj = ResourceManager.GetObject("Details_Popup_icon-icons.com_55930", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap frame_gallery_image_images_photo_picture_pictures_icon_123209 {
             get {
                 object obj = ResourceManager.GetObject("frame_gallery_image_images_photo_picture_pictures_icon_123209", resourceCulture);
@@ -103,9 +83,9 @@ namespace Курсовая.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap list_symbol_of_three_items_with_dots_icon_icons_com_72994 {
+        internal static System.Drawing.Bitmap images_square_outlined_interface_button_symbol {
             get {
-                object obj = ResourceManager.GetObject("list-symbol-of-three-items-with-dots_icon-icons.com_72994", resourceCulture);
+                object obj = ResourceManager.GetObject("images-square-outlined-interface-button-symbol", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +93,9 @@ namespace Курсовая.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap reload_update_refresh_icon_143703 {
+        internal static System.Drawing.Bitmap tablet {
             get {
-                object obj = ResourceManager.GetObject("reload_update_refresh_icon_143703", resourceCulture);
+                object obj = ResourceManager.GetObject("tablet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +103,9 @@ namespace Курсовая.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tileview_tile_view_icon_131494 {
+        internal static System.Drawing.Bitmap tile {
             get {
-                object obj = ResourceManager.GetObject("tileview_tile_view_icon_131494", resourceCulture);
+                object obj = ResourceManager.GetObject("tile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

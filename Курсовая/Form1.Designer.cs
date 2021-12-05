@@ -32,6 +32,7 @@ namespace Курсовая
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ImageList imageList;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.ImageList imageList1;
             this.ListFiles = new System.Windows.Forms.ListView();
             this.namr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,19 +50,30 @@ namespace Курсовая
             this.Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.ListDisk = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.BackButton = new System.Windows.Forms.ToolStripButton();
+            this.NextButton = new System.Windows.Forms.ToolStripButton();
             this.FilePathTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.RefreshButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.Tile = new System.Windows.Forms.ToolStripButton();
+            this.List = new System.Windows.Forms.ToolStripButton();
+            this.Table = new System.Windows.Forms.ToolStripButton();
+            this.Images = new System.Windows.Forms.ToolStripButton();
+            this.SmallImages = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.TileIcon = new System.Windows.Forms.ToolStripButton();
             this.DetalsIcon = new System.Windows.Forms.ToolStripButton();
             this.ListIcon = new System.Windows.Forms.ToolStripButton();
             this.LargeIcon = new System.Windows.Forms.ToolStripButton();
-            this.BackButton = new System.Windows.Forms.ToolStripButton();
-            this.NextButton = new System.Windows.Forms.ToolStripButton();
-            this.RefreshButton = new System.Windows.Forms.ToolStripButton();
-            this.BigIcon = new System.Windows.Forms.ImageList(this.components);
+            this.SmallIcon = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             imageList = new System.Windows.Forms.ImageList(this.components);
+            imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -78,6 +90,18 @@ namespace Курсовая
             imageList.Images.SetKeyName(4, "-forward_90600.png");
             imageList.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
             imageList.Images.SetKeyName(6, "document_96668.png");
+            // 
+            // imageList1
+            // 
+            imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            imageList1.Images.SetKeyName(0, "icons8-папка-50.icon");
+            imageList1.Images.SetKeyName(1, "reload_update_refresh_icon_143703.png");
+            imageList1.Images.SetKeyName(2, "Generica_25576.png");
+            imageList1.Images.SetKeyName(3, "txt_4177.png");
+            imageList1.Images.SetKeyName(4, "-forward_90600.png");
+            imageList1.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
+            imageList1.Images.SetKeyName(6, "document_96668.png");
             // 
             // ListFiles
             // 
@@ -96,7 +120,7 @@ namespace Курсовая
             this.ListFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListFiles.Name = "ListFiles";
             this.ListFiles.Size = new System.Drawing.Size(708, 322);
-            this.ListFiles.SmallImageList = imageList;
+            this.ListFiles.SmallImageList = imageList1;
             this.ListFiles.TabIndex = 0;
             this.ListFiles.UseCompatibleStateImageBehavior = false;
             this.ListFiles.View = System.Windows.Forms.View.List;
@@ -220,10 +244,10 @@ namespace Курсовая
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BackButton,
-            this.NextButton,
-            this.FilePathTextBox,
-            this.RefreshButton});
+            this.toolStripButton6,
+            this.toolStripButton7,
+            this.toolStripTextBox1,
+            this.toolStripButton8});
             this.toolStrip1.Location = new System.Drawing.Point(12, 63);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -231,86 +255,46 @@ namespace Курсовая
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // FilePathTextBox
+            // toolStripButton6
             // 
-            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FilePathTextBox.Name = "FilePathTextBox";
-            this.FilePathTextBox.Size = new System.Drawing.Size(500, 31);
-            this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton6.Text = "toolStripButton6";
+            this.toolStripButton6.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // toolStrip2
+            // toolStripButton7
             // 
-            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.TileIcon,
-            this.DetalsIcon,
-            this.ListIcon,
-            this.LargeIcon,
-            this.toolStripLabel2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(732, 31);
-            this.toolStrip2.TabIndex = 10;
-            this.toolStrip2.Text = "toolStrip2";
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton7.Text = "toolStripButton7";
+            this.toolStripButton7.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // toolStripLabel1
+            // toolStripTextBox1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 28);
-            this.toolStripLabel1.Text = "Вид";
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(500, 31);
+            this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
             // 
-            // toolStripLabel2
+            // toolStripButton8
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(92, 28);
-            this.toolStripLabel2.Text = "Сортировка";
-            // 
-            // TileIcon
-            // 
-            this.TileIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TileIcon.Image = global::Курсовая.Properties.Resources.tileview_tile_view_icon_131494;
-            this.TileIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TileIcon.Name = "TileIcon";
-            this.TileIcon.Size = new System.Drawing.Size(29, 28);
-            this.TileIcon.Text = "Плитка";
-            this.TileIcon.Click += new System.EventHandler(this.TileIcon_Click);
-            // 
-            // DetalsIcon
-            // 
-            this.DetalsIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DetalsIcon.Image = global::Курсовая.Properties.Resources.Details_Popup_icon_icons_com_55930;
-            this.DetalsIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DetalsIcon.Name = "DetalsIcon";
-            this.DetalsIcon.Size = new System.Drawing.Size(29, 28);
-            this.DetalsIcon.Text = "Детали";
-            this.DetalsIcon.Click += new System.EventHandler(this.DetalsIcon_Click);
-            // 
-            // ListIcon
-            // 
-            this.ListIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ListIcon.Image = global::Курсовая.Properties.Resources.list_symbol_of_three_items_with_dots_icon_icons_com_72994;
-            this.ListIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ListIcon.Name = "ListIcon";
-            this.ListIcon.Size = new System.Drawing.Size(29, 28);
-            this.ListIcon.Text = "Список";
-            this.ListIcon.Click += new System.EventHandler(this.ListIcon_Click);
-            // 
-            // LargeIcon
-            // 
-            this.LargeIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.LargeIcon.Image = global::Курсовая.Properties.Resources.frame_gallery_image_images_photo_picture_pictures_icon_123209;
-            this.LargeIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LargeIcon.Name = "LargeIcon";
-            this.LargeIcon.Size = new System.Drawing.Size(29, 28);
-            this.LargeIcon.Text = "Большие значки";
-            this.LargeIcon.Click += new System.EventHandler(this.LargeIcon_Click);
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton8.Text = "toolStripButton8";
+            this.toolStripButton8.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // BackButton
             // 
             this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BackButton.Image = global::Курсовая.Properties.Resources._forward_90600__1_;
             this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(29, 28);
@@ -320,28 +304,160 @@ namespace Курсовая
             // NextButton
             // 
             this.NextButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NextButton.Image = global::Курсовая.Properties.Resources._forward_90600;
             this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(29, 28);
             this.NextButton.Text = "Вперед";
             this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
+            // FilePathTextBox
+            // 
+            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FilePathTextBox.Name = "FilePathTextBox";
+            this.FilePathTextBox.Size = new System.Drawing.Size(500, 31);
+            this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
+            // 
             // RefreshButton
             // 
             this.RefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RefreshButton.Image = global::Курсовая.Properties.Resources.reload_update_refresh_icon_143703;
             this.RefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(29, 28);
+            this.RefreshButton.Size = new System.Drawing.Size(29, 24);
             this.RefreshButton.Text = "Обновить";
+            this.RefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.RefreshButton.Click += new System.EventHandler(this.Refresh_Click);
             // 
-            // BigIcon
+            // toolStrip2
             // 
-            this.BigIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("BigIcon.ImageStream")));
-            this.BigIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.BigIcon.Images.SetKeyName(0, "Generica_25576.png");
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
+            this.Tile,
+            this.List,
+            this.Table,
+            this.Images,
+            this.SmallImages});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(732, 31);
+            this.toolStrip2.TabIndex = 10;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(35, 28);
+            this.toolStripLabel3.Text = "Вид";
+            // 
+            // Tile
+            // 
+            this.Tile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Tile.Image = global::Курсовая.Properties.Resources.tile;
+            this.Tile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Tile.Name = "Tile";
+            this.Tile.Size = new System.Drawing.Size(29, 28);
+            this.Tile.Text = "Плитка";
+            this.Tile.Click += new System.EventHandler(this.TileIcon_Click);
+            // 
+            // List
+            // 
+            this.List.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.List.Image = ((System.Drawing.Image)(resources.GetObject("List.Image")));
+            this.List.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.List.Name = "List";
+            this.List.Size = new System.Drawing.Size(29, 28);
+            this.List.Text = "Список";
+            this.List.Click += new System.EventHandler(this.ListIcon_Click);
+            // 
+            // Table
+            // 
+            this.Table.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Table.Image = ((System.Drawing.Image)(resources.GetObject("Table.Image")));
+            this.Table.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Table.Name = "Table";
+            this.Table.Size = new System.Drawing.Size(29, 28);
+            this.Table.Text = "Таблица";
+            this.Table.Click += new System.EventHandler(this.DetalsIcon_Click);
+            // 
+            // Images
+            // 
+            this.Images.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Images.Image = ((System.Drawing.Image)(resources.GetObject("Images.Image")));
+            this.Images.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Images.Name = "Images";
+            this.Images.Size = new System.Drawing.Size(29, 28);
+            this.Images.Text = "Обычные значки";
+            this.Images.Click += new System.EventHandler(this.LargeIcon_Click);
+            // 
+            // SmallImages
+            // 
+            this.SmallImages.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SmallImages.Image = ((System.Drawing.Image)(resources.GetObject("SmallImages.Image")));
+            this.SmallImages.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SmallImages.Name = "SmallImages";
+            this.SmallImages.Size = new System.Drawing.Size(29, 28);
+            this.SmallImages.Text = "Маленькие значки";
+            this.SmallImages.Click += new System.EventHandler(this.SmallIcon_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(35, 28);
+            this.toolStripLabel1.Text = "Вид";
+            // 
+            // TileIcon
+            // 
+            this.TileIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TileIcon.Image = global::Курсовая.Properties.Resources.tile;
+            this.TileIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TileIcon.Name = "TileIcon";
+            this.TileIcon.Size = new System.Drawing.Size(29, 28);
+            this.TileIcon.Text = "Плитка";
+            this.TileIcon.Click += new System.EventHandler(this.TileIcon_Click);
+            // 
+            // DetalsIcon
+            // 
+            this.DetalsIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DetalsIcon.Image = global::Курсовая.Properties.Resources.tablet;
+            this.DetalsIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DetalsIcon.Name = "DetalsIcon";
+            this.DetalsIcon.Size = new System.Drawing.Size(29, 28);
+            this.DetalsIcon.Text = "Таблица";
+            this.DetalsIcon.Click += new System.EventHandler(this.DetalsIcon_Click);
+            // 
+            // ListIcon
+            // 
+            this.ListIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ListIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ListIcon.Name = "ListIcon";
+            this.ListIcon.Size = new System.Drawing.Size(29, 28);
+            this.ListIcon.Text = "Список";
+            this.ListIcon.Click += new System.EventHandler(this.ListIcon_Click);
+            // 
+            // LargeIcon
+            // 
+            this.LargeIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.LargeIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LargeIcon.Name = "LargeIcon";
+            this.LargeIcon.Size = new System.Drawing.Size(29, 24);
+            this.LargeIcon.Text = "Обычные значки";
+            this.LargeIcon.Click += new System.EventHandler(this.LargeIcon_Click);
+            // 
+            // SmallIcon
+            // 
+            this.SmallIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SmallIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SmallIcon.Name = "SmallIcon";
+            this.SmallIcon.Size = new System.Drawing.Size(29, 24);
+            this.SmallIcon.Text = "Мелкие значки";
+            this.SmallIcon.Click += new System.EventHandler(this.SmallIcon_Click);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(92, 28);
+            this.toolStripLabel2.Text = "Сортировка";
             // 
             // Form1
             // 
@@ -402,7 +518,17 @@ namespace Курсовая
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton LargeIcon;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ImageList BigIcon;
+        private System.Windows.Forms.ToolStripButton SmallIcon;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripButton Tile;
+        private System.Windows.Forms.ToolStripButton List;
+        private System.Windows.Forms.ToolStripButton Table;
+        private System.Windows.Forms.ToolStripButton Images;
+        private System.Windows.Forms.ToolStripButton SmallImages;
     }
 }
 

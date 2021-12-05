@@ -60,18 +60,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -82,25 +82,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\-forward_90600 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\-forward_90600.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\reload_update_refresh_icon_143703.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tileview_tile_view_icon_131494.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Details_Popup_icon-icons.com_55930.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\list-symbol-of-three-items-with-dots_icon-icons.com_72994.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\frame_gallery_image_images_photo_picture_pictures_icon_123209.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images-square-outlined-interface-button-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
