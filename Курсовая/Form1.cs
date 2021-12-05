@@ -64,7 +64,7 @@ namespace Курсовая
 
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
 
-                        item.SubItems.Add(fileInfo.Extension + "");
+                        item.SubItems.Add(fileInfo.Extension);
 
                         if (fileInfo.Length <= 1024)
                         {
@@ -265,62 +265,75 @@ namespace Курсовая
             DiskLists();
         }
 
-        //удалить
-        private void Delete_Click(object sender, EventArgs e)
+        //кнопка назад
+        private void BackButton_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach (ListViewItem item in ListFiles.SelectedItems)
+                int count = 0;
+
+                string path = FilePathTextBox.Text;
+
+                path = path.Substring(0, path.LastIndexOf(slash));
+
+                foreach (var i in path)
                 {
-                    string path = item.Tag.ToString();
-
-                    //если это файл
-                    if (File.Exists(path))
+                    if (i == slash)
                     {
-                        File.Delete(path);
+                        count++;
                     }
-                    //если это папка
-                    else if (Directory.Exists(path))
-                    {
-                        Directory.Delete(path);
-                    }
+                }
 
-                    ListFiles.Items.Remove(item);
+                if (count == 0)
+                {
+                    ShowFileList(path + slash);
+                }
+                else
+                {
+                    ShowFileList(path);
                 }
             }
-            catch (Exception r)
+            catch (Exception)
             {
-                MessageBox.Show(r.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Произшла ошибка", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //недопустимые значения в имени
-        private bool IsValidFileName(string fileName)
+        //обновление кнопкой
+        private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            bool isValid = true;
-
-            //недопустимые символы
-            string errChar = "\\/:*?\"<>|";
-
-            for (int i = 0; i < errChar.Length; i++)
-            {
-                if (fileName.Contains(errChar[i].ToString()))
-                {
-                    isValid = false;
-                    break;
-                }
-            }
-
-            return isValid;
+            Reflesh_Click(sender, e);
         }
 
-        //переименовать файл/папку
-        private void Rename_Click(object sender, EventArgs e)
+        //удалить
+        private void Delete_Click(object sender, EventArgs e)
         {
-            if (ListFiles.SelectedItems.Count > 0)
+            if (MessageBox.Show($"Вы уверены, что хотите удалить {Active.FocusedItem.Text} ?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //По сути, имитируйте редактирование метки, чтобы вызвать событие LabelEdit через код.
-                ListFiles.SelectedItems[0].BeginEdit();
+                try
+                {
+                    foreach (ListViewItem item in ListFiles.SelectedItems)
+                    {
+                        string path = item.Tag.ToString();
+
+                        //если это файл
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                        }
+                        //если это папка
+                        else if (Directory.Exists(path))
+                        {
+                            Directory.Delete(path);
+                        }
+
+                        ListFiles.Items.Remove(item);
+                    }
+                }
+                catch (Exception r)
+                {
+                    MessageBox.Show(r.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -359,12 +372,6 @@ namespace Курсовая
 
                 CopyAndPasteDirectory(dir, destSubDirInfo);
             }
-        }
-
-        private void ListFiles_ItemDrag(object sender, ItemDragEventArgs e)
-        {
-            FilePath = Convert.ToString((sender as ComboBox).SelectedItem);
-            ListFiles.DoDragDrop(FilePath + "\\" + ListFiles.FocusedItem.Text, DragDropEffects.Copy);
         }
 
         //копирование файлов/папок
@@ -507,89 +514,31 @@ namespace Курсовая
             }
         }
 
-        private void ListFiles_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        //недопустимые значения в имени
+        private bool IsValidFileName(string fileName)
         {
-            string newName = e.Label;
+            bool validation = true;
 
-            //Выбранный элемент
-            ListViewItem selectedItem = ListFiles.SelectedItems[0];
+            //недопустимые символы
+            string symbol = "\\/:*?\"<>|";
 
-            //Если имя пустое
-            if (string.IsNullOrEmpty(newName))
+            for (int i = 0; i < symbol.Length; i++)
             {
-                MessageBox.Show("Имя файла не может быть пустым!", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //Когда отображается, восстановить исходную метку
-                e.CancelEdit = true;
-            }
-            //Этикетка не изменилась
-            else if (newName == null)
-            {
-                return;
-            }
-            //Ярлык изменился, но в итоге остался прежним
-            else if (newName == selectedItem.Text)
-            {
-                return;
-            }
-            //Имя файла недействительно
-            else if (!IsValidFileName(newName))
-            {
-                MessageBox.Show("Имя файла не может содержать ни один из следующих символов:\r\n" + "\t\\/:*?\"<>|", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //Когда отображается, восстановить исходную метку
-                e.CancelEdit = true;
-            }
-            else
-            {
-                //Если это папка
-                if (Directory.Exists(selectedItem.Tag.ToString()))
+                if (fileName.Contains(symbol[i].ToString()))
                 {
-                    //Если в текущем пути есть папка с таким же именем
-                    if (Directory.Exists(Path.Combine(FilePath, newName)))
-                    {
-                        MessageBox.Show("В текущем пути есть папка с таким же именем！", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        //Когда отображается, восстановить исходную метку
-                        e.CancelEdit = true;
-                    }
+                    validation = false;
+                    break;
                 }
             }
+
+            return validation;
         }
 
-        //кнопка назад
-        private void BackButton_Click(object sender, EventArgs e)
+        //переименовать файл/папку
+        private void Rename_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int count = 0;
-
-                string path = FilePathTextBox.Text;
-
-                path = path.Substring(0, path.LastIndexOf(slash));
-
-                foreach (var i in path)
-                {
-                    if (i == slash)
-                    {
-                        count++;
-                    }
-                }
-
-                if (count == 0)
-                {
-                    ShowFileList(path + slash);
-                }
-                else
-                {
-                    ShowFileList(path);
-                }
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Произшла ошибка", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ListFiles.SelectedItems[0].BeginEdit();
         }
+
     }
 }

@@ -37,10 +37,6 @@ namespace Курсовая
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BackButton = new System.Windows.Forms.ToolStripButton();
-            this.FilePathTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.ListDisk = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CreateFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +48,13 @@ namespace Курсовая
             this.Rename = new System.Windows.Forms.ToolStripMenuItem();
             this.CopyFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.Reflesh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BackButton = new System.Windows.Forms.ToolStripButton();
+            this.FilePathTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             imageList = new System.Windows.Forms.ImageList(this.components);
-            this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList
@@ -74,23 +74,23 @@ namespace Курсовая
             this.columnHeader2,
             this.FileType,
             this.columnHeader4});
+            this.ListFiles.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListFiles.HideSelection = false;
-            this.ListFiles.Location = new System.Drawing.Point(3, 58);
+            this.ListFiles.Location = new System.Drawing.Point(12, 72);
+            this.ListFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListFiles.Name = "ListFiles";
-            this.ListFiles.Size = new System.Drawing.Size(867, 444);
+            this.ListFiles.Size = new System.Drawing.Size(645, 329);
             this.ListFiles.SmallImageList = imageList;
             this.ListFiles.TabIndex = 0;
             this.ListFiles.UseCompatibleStateImageBehavior = false;
             this.ListFiles.View = System.Windows.Forms.View.Details;
-            this.ListFiles.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.ListFiles_AfterLabelEdit);
             this.ListFiles.ItemActivate += new System.EventHandler(this.ListFiles_ItemActivate);
-            this.ListFiles.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.ListFiles_ItemDrag);
             this.ListFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFiles_MouseClick);
             // 
             // namr
             // 
             this.namr.Text = "Имя";
-            this.namr.Width = 225;
+            this.namr.Width = 210;
             // 
             // columnHeader2
             // 
@@ -106,57 +106,15 @@ namespace Курсовая
             // columnHeader4
             // 
             this.columnHeader4.Text = "размер";
-            this.columnHeader4.Width = 145;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BackButton,
-            this.FilePathTextBox,
-            this.toolStripButton3});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip1.Location = new System.Drawing.Point(64, 25);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(840, 27);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // BackButton
-            // 
-            this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
-            this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(29, 24);
-            this.BackButton.Text = "toolStripButton2";
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // FilePathTextBox
-            // 
-            this.FilePathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FilePathTextBox.Name = "FilePathTextBox";
-            this.FilePathTextBox.Size = new System.Drawing.Size(740, 27);
-            this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButton3.Text = "toolStripButton1";
+            this.columnHeader4.Width = 125;
             // 
             // ListDisk
             // 
             this.ListDisk.FormattingEnabled = true;
-            this.ListDisk.Location = new System.Drawing.Point(3, 25);
+            this.ListDisk.Location = new System.Drawing.Point(12, 37);
+            this.ListDisk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListDisk.Name = "ListDisk";
-            this.ListDisk.Size = new System.Drawing.Size(58, 24);
+            this.ListDisk.Size = new System.Drawing.Size(56, 27);
             this.ListDisk.TabIndex = 4;
             this.ListDisk.SelectedIndexChanged += new System.EventHandler(this.ListDisk_SelectedIndexChanged);
             // 
@@ -165,11 +123,11 @@ namespace Курсовая
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateFileOrFolder,
-            this.Delete,
+            this.CopyFileOrFolder,
             this.CutFileOrFolder,
             this.Insert,
+            this.Delete,
             this.Rename,
-            this.CopyFileOrFolder,
             this.Reflesh});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(191, 172);
@@ -239,24 +197,77 @@ namespace Курсовая
             this.Reflesh.Text = "Обновить";
             this.Reflesh.Click += new System.EventHandler(this.Reflesh_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BackButton,
+            this.toolStripButton3,
+            this.FilePathTextBox});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip1.Location = new System.Drawing.Point(77, 37);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(580, 27);
+            this.toolStrip1.TabIndex = 6;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BackButton
+            // 
+            this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
+            this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(29, 24);
+            this.BackButton.Text = "toolStripButton2";
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // FilePathTextBox
+            // 
+            this.FilePathTextBox.AutoSize = false;
+            this.FilePathTextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FilePathTextBox.Name = "FilePathTextBox";
+            this.FilePathTextBox.Size = new System.Drawing.Size(515, 27);
+            this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton3.Text = "toolStripButton1";
+            this.toolStripButton3.Click += new System.EventHandler(this.Reflesh_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(882, 503);
-            this.Controls.Add(this.ListDisk);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(672, 414);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.ListDisk);
             this.Controls.Add(this.ListFiles);
+            this.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Файловый менеджер";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -265,8 +276,6 @@ namespace Курсовая
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader FileType;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripTextBox FilePathTextBox;
         public System.Windows.Forms.ColumnHeader namr;
         private System.Windows.Forms.ComboBox ListDisk;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -279,7 +288,9 @@ namespace Курсовая
         private System.Windows.Forms.ToolStripMenuItem Rename;
         private System.Windows.Forms.ToolStripMenuItem CopyFileOrFolder;
         private System.Windows.Forms.ToolStripMenuItem Reflesh;
+        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton BackButton;
+        private System.Windows.Forms.ToolStripTextBox FilePathTextBox;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }
