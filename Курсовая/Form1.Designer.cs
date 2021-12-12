@@ -34,9 +34,9 @@ namespace Курсовая
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.ImageList imageList1;
             this.ListFiles = new System.Windows.Forms.ListView();
-            this.namr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FileType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CreateFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,10 +50,6 @@ namespace Курсовая
             this.Refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.ListDisk = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.BackButton = new System.Windows.Forms.ToolStripButton();
             this.NextButton = new System.Windows.Forms.ToolStripButton();
             this.FilePathTextBox = new System.Windows.Forms.ToolStripTextBox();
@@ -90,6 +86,7 @@ namespace Курсовая
             imageList.Images.SetKeyName(4, "-forward_90600.png");
             imageList.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
             imageList.Images.SetKeyName(6, "document_96668.png");
+            imageList.Images.SetKeyName(7, "folderorangeopen_93000.png");
             // 
             // imageList1
             // 
@@ -102,13 +99,16 @@ namespace Курсовая
             imageList1.Images.SetKeyName(4, "-forward_90600.png");
             imageList1.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
             imageList1.Images.SetKeyName(6, "document_96668.png");
+            imageList1.Images.SetKeyName(7, "folderorangeopen_93000.png");
             // 
             // ListFiles
             // 
+            this.ListFiles.AllowDrop = true;
+            this.ListFiles.BackColor = System.Drawing.SystemColors.Window;
             this.ListFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.namr,
+            this.columnHeader1,
             this.columnHeader2,
-            this.FileType,
+            this.columnHeader3,
             this.columnHeader4});
             this.ListFiles.ContextMenuStrip = this.contextMenuStrip;
             this.ListFiles.Cursor = System.Windows.Forms.Cursors.Default;
@@ -116,38 +116,39 @@ namespace Курсовая
             this.ListFiles.HideSelection = false;
             this.ListFiles.LabelEdit = true;
             this.ListFiles.LargeImageList = imageList;
-            this.ListFiles.Location = new System.Drawing.Point(12, 98);
+            this.ListFiles.Location = new System.Drawing.Point(10, 62);
             this.ListFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListFiles.Name = "ListFiles";
-            this.ListFiles.Size = new System.Drawing.Size(708, 322);
+            this.ListFiles.Size = new System.Drawing.Size(688, 348);
             this.ListFiles.SmallImageList = imageList1;
             this.ListFiles.TabIndex = 0;
             this.ListFiles.UseCompatibleStateImageBehavior = false;
-            this.ListFiles.View = System.Windows.Forms.View.List;
+            this.ListFiles.View = System.Windows.Forms.View.Details;
             this.ListFiles.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.ListFiles_AfterLabelEdit);
+            this.ListFiles.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListFiles_ColumnClick);
             this.ListFiles.ItemActivate += new System.EventHandler(this.ListFiles_ItemActivate);
+            this.ListFiles.SelectedIndexChanged += new System.EventHandler(this.ListFiles_SelectedIndexChanged);
             this.ListFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFiles_MouseClick);
             // 
-            // namr
+            // columnHeader1
             // 
-            this.namr.Text = "Имя";
-            this.namr.Width = 260;
+            this.columnHeader1.Text = "Имя";
+            this.columnHeader1.Width = 250;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Tag = "";
-            this.columnHeader2.Text = "Дата изменения";
-            this.columnHeader2.Width = 170;
+            this.columnHeader2.Text = "Дата создания";
+            this.columnHeader2.Width = 150;
             // 
-            // FileType
+            // columnHeader3
             // 
-            this.FileType.Text = "Тип файла";
-            this.FileType.Width = 112;
+            this.columnHeader3.Text = "Расширение";
+            this.columnHeader3.Width = 120;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "размер";
-            this.columnHeader4.Width = 125;
+            this.columnHeader4.Text = "Размер";
+            this.columnHeader4.Width = 145;
             // 
             // contextMenuStrip
             // 
@@ -177,14 +178,14 @@ namespace Курсовая
             this.папкуToolStripMenuItem.Name = "папкуToolStripMenuItem";
             this.папкуToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.папкуToolStripMenuItem.Text = "Папку";
-            this.папкуToolStripMenuItem.Click += new System.EventHandler(this.папкуToolStripMenuItem_Click);
+            this.папкуToolStripMenuItem.Click += new System.EventHandler(this.CreateToFolder);
             // 
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.файлToolStripMenuItem.Text = "Текстовый документ";
-            this.файлToolStripMenuItem.Click += new System.EventHandler(this.файлToolStripMenuItem_Click);
+            this.файлToolStripMenuItem.Click += new System.EventHandler(this.CreateToFile);
             // 
             // CopyFileOrFolder
             // 
@@ -230,11 +231,14 @@ namespace Курсовая
             // 
             // ListDisk
             // 
+            this.ListDisk.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ListDisk.FormattingEnabled = true;
-            this.ListDisk.Location = new System.Drawing.Point(607, 63);
+            this.ListDisk.Location = new System.Drawing.Point(624, 27);
             this.ListDisk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListDisk.Name = "ListDisk";
-            this.ListDisk.Size = new System.Drawing.Size(113, 27);
+            this.ListDisk.Size = new System.Drawing.Size(86, 27);
             this.ListDisk.TabIndex = 4;
             this.ListDisk.SelectedIndexChanged += new System.EventHandler(this.ListDisk_SelectedIndexChanged);
             // 
@@ -244,87 +248,53 @@ namespace Курсовая
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton6,
-            this.toolStripButton7,
-            this.toolStripTextBox1,
-            this.toolStripButton8});
-            this.toolStrip1.Location = new System.Drawing.Point(12, 63);
+            this.BackButton,
+            this.NextButton,
+            this.FilePathTextBox,
+            this.RefreshButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(592, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(630, 27);
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(29, 28);
-            this.toolStripButton6.Text = "toolStripButton6";
-            this.toolStripButton6.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(29, 28);
-            this.toolStripButton7.Text = "toolStripButton7";
-            this.toolStripButton7.Click += new System.EventHandler(this.NextButton_Click);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(500, 31);
-            this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(29, 28);
-            this.toolStripButton8.Text = "toolStripButton8";
-            this.toolStripButton8.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // BackButton
             // 
             this.BackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
             this.BackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(29, 28);
-            this.BackButton.Text = "Назад";
+            this.BackButton.Size = new System.Drawing.Size(29, 24);
+            this.BackButton.Text = "toolStripButton6";
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // NextButton
             // 
             this.NextButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NextButton.Image = ((System.Drawing.Image)(resources.GetObject("NextButton.Image")));
             this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(29, 28);
-            this.NextButton.Text = "Вперед";
+            this.NextButton.Size = new System.Drawing.Size(29, 24);
+            this.NextButton.Text = "NextButton";
             this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // FilePathTextBox
             // 
-            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FilePathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FilePathTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FilePathTextBox.Name = "FilePathTextBox";
-            this.FilePathTextBox.Size = new System.Drawing.Size(500, 31);
+            this.FilePathTextBox.Size = new System.Drawing.Size(538, 27);
             this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
             // 
             // RefreshButton
             // 
             this.RefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
             this.RefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(29, 24);
-            this.RefreshButton.Text = "Обновить";
-            this.RefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.RefreshButton.Text = "toolStripButton8";
             this.RefreshButton.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // toolStrip2
@@ -340,14 +310,14 @@ namespace Курсовая
             this.SmallImages});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(732, 31);
+            this.toolStrip2.Size = new System.Drawing.Size(710, 27);
             this.toolStrip2.TabIndex = 10;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(35, 28);
+            this.toolStripLabel3.Size = new System.Drawing.Size(35, 24);
             this.toolStripLabel3.Text = "Вид";
             // 
             // Tile
@@ -356,7 +326,7 @@ namespace Курсовая
             this.Tile.Image = global::Курсовая.Properties.Resources.tile;
             this.Tile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tile.Name = "Tile";
-            this.Tile.Size = new System.Drawing.Size(29, 28);
+            this.Tile.Size = new System.Drawing.Size(29, 24);
             this.Tile.Text = "Плитка";
             this.Tile.Click += new System.EventHandler(this.TileIcon_Click);
             // 
@@ -366,7 +336,7 @@ namespace Курсовая
             this.List.Image = ((System.Drawing.Image)(resources.GetObject("List.Image")));
             this.List.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.List.Name = "List";
-            this.List.Size = new System.Drawing.Size(29, 28);
+            this.List.Size = new System.Drawing.Size(29, 24);
             this.List.Text = "Список";
             this.List.Click += new System.EventHandler(this.ListIcon_Click);
             // 
@@ -376,7 +346,7 @@ namespace Курсовая
             this.Table.Image = ((System.Drawing.Image)(resources.GetObject("Table.Image")));
             this.Table.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Table.Name = "Table";
-            this.Table.Size = new System.Drawing.Size(29, 28);
+            this.Table.Size = new System.Drawing.Size(29, 24);
             this.Table.Text = "Таблица";
             this.Table.Click += new System.EventHandler(this.DetalsIcon_Click);
             // 
@@ -386,7 +356,7 @@ namespace Курсовая
             this.Images.Image = ((System.Drawing.Image)(resources.GetObject("Images.Image")));
             this.Images.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Images.Name = "Images";
-            this.Images.Size = new System.Drawing.Size(29, 28);
+            this.Images.Size = new System.Drawing.Size(29, 24);
             this.Images.Text = "Обычные значки";
             this.Images.Click += new System.EventHandler(this.LargeIcon_Click);
             // 
@@ -396,7 +366,7 @@ namespace Курсовая
             this.SmallImages.Image = ((System.Drawing.Image)(resources.GetObject("SmallImages.Image")));
             this.SmallImages.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SmallImages.Name = "SmallImages";
-            this.SmallImages.Size = new System.Drawing.Size(29, 28);
+            this.SmallImages.Size = new System.Drawing.Size(29, 24);
             this.SmallImages.Text = "Маленькие значки";
             this.SmallImages.Click += new System.EventHandler(this.SmallIcon_Click);
             // 
@@ -465,7 +435,7 @@ namespace Курсовая
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(732, 433);
+            this.ClientSize = new System.Drawing.Size(710, 424);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
@@ -490,10 +460,6 @@ namespace Курсовая
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader FileType;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        public System.Windows.Forms.ColumnHeader namr;
         private System.Windows.Forms.ComboBox ListDisk;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem CreateFileOrFolder;
@@ -506,10 +472,6 @@ namespace Курсовая
         private System.Windows.Forms.ToolStripMenuItem CopyFileOrFolder;
         private System.Windows.Forms.ToolStripMenuItem Refresh;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton BackButton;
-        private System.Windows.Forms.ToolStripButton NextButton;
-        private System.Windows.Forms.ToolStripTextBox FilePathTextBox;
-        private System.Windows.Forms.ToolStripButton RefreshButton;
         private System.Windows.Forms.ListView ListFiles;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton TileIcon;
@@ -519,16 +481,20 @@ namespace Курсовая
         private System.Windows.Forms.ToolStripButton LargeIcon;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripButton SmallIcon;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton BackButton;
+        private System.Windows.Forms.ToolStripButton NextButton;
+        private System.Windows.Forms.ToolStripTextBox FilePathTextBox;
+        private System.Windows.Forms.ToolStripButton RefreshButton;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripButton Tile;
         private System.Windows.Forms.ToolStripButton List;
         private System.Windows.Forms.ToolStripButton Table;
         private System.Windows.Forms.ToolStripButton Images;
         private System.Windows.Forms.ToolStripButton SmallImages;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 

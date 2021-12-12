@@ -8,7 +8,7 @@ namespace Курсовая
 {
     public partial class Form1 : Form
     {
-        private string FilePath = @"C:\";
+        private string FilePath = "C:\\";
 
         private ListView Active;
 
@@ -47,7 +47,7 @@ namespace Курсовая
                 //Список всех папок
                 foreach (DirectoryInfo dirInfo in dirs)
                 {
-                    ListViewItem item = ListFiles.Items.Add(dirInfo.Name, 2);
+                    ListViewItem item = ListFiles.Items.Add(dirInfo.Name, 7);
                     item.Tag = dirInfo.FullName;
                     item.SubItems.Add(dirInfo.LastWriteTime.ToString());
                     item.SubItems.Add("папка");
@@ -67,38 +67,37 @@ namespace Курсовая
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 3)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 3} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 3)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 3} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 3)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 3} МБ");
                         }
                     }
 
                     //если файл .bmp
                     else if (fileInfo.Extension == ".bmp")
                     {
-                        ListViewItem item;
-                        item = ListFiles.Items.Add(fileInfo.Name, 5);
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 5);
                         item.Tag = fileInfo.FullName;
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
                         item.SubItems.Add(fileInfo.Extension);
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 5)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 5} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 5)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 5} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 5)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 5} МБ");
                         }
                     }
                     //другие файлы
@@ -111,15 +110,15 @@ namespace Курсовая
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 6)} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 5} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 6)} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 6} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 6)} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 6} МБ");
                         }
                     }
                 }
@@ -194,7 +193,7 @@ namespace Курсовая
         }
 
         //обновить данные
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void RefreshData(object sender, EventArgs e)
         {
             FilePath = FilePathTextBox.Text;
 
@@ -208,7 +207,7 @@ namespace Курсовая
         {
             FilePath = Convert.ToString((sender as ComboBox).SelectedItem);
 
-            FilePathTextBox.Text = FilePath;
+            FilePath = FilePathTextBox.Text;
 
             ShowFileList(FilePath);
         }
@@ -225,7 +224,7 @@ namespace Курсовая
         }
 
         //создать папку
-        private void папкуToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateToFolder(object sender, EventArgs e)
         {
             try
             {
@@ -253,7 +252,7 @@ namespace Курсовая
         }
 
         //создать файл txt
-        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateToFile(object sender, EventArgs e)
         {
             int num = 1;
             string newFile = "новый файл";
@@ -278,13 +277,8 @@ namespace Курсовая
         //обновить список
         private void Refresh_Click(object sender, EventArgs e)
         {
-            FilePath = FilePathTextBox.Text;
-
-            ShowFileList(FilePath);
-
-            DiskLists();
+            RefreshData(sender, e);
         }
-
 
         //кнопка назад
         private void BackButton_Click(object sender, EventArgs e)
@@ -321,7 +315,7 @@ namespace Курсовая
         }
 
         //обновление кнопкой
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void RefreshButt(object sender, EventArgs e)
         {
             Refresh_Click(sender, e);
         }
@@ -562,7 +556,7 @@ namespace Курсовая
             {
                 ListFiles.SelectedItems[0].BeginEdit();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Чтобы переименовать, нужно выделить папку/файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -662,6 +656,24 @@ namespace Курсовая
         private void SmallIcon_Click(object sender, EventArgs e)
         {
             ListFiles.View = View.SmallIcon;
+        }
+
+        //сортировка по имени
+        private void ListFiles_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (ListFiles.Sorting == SortOrder.Descending)
+            {
+                ListFiles.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                ListFiles.Sorting = SortOrder.Descending;
+            }
+        }
+
+        private void ListFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
