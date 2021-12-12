@@ -39,11 +39,10 @@ namespace Курсовая
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CreateFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.Create = new System.Windows.Forms.ToolStripMenuItem();
             this.папкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.CutFileOrFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.Copy = new System.Windows.Forms.ToolStripMenuItem();
             this.Insert = new System.Windows.Forms.ToolStripMenuItem();
             this.Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.Rename = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +67,7 @@ namespace Курсовая
             this.LargeIcon = new System.Windows.Forms.ToolStripButton();
             this.SmallIcon = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.Cut = new System.Windows.Forms.ToolStripMenuItem();
             imageList = new System.Windows.Forms.ImageList(this.components);
             imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip.SuspendLayout();
@@ -79,27 +79,10 @@ namespace Курсовая
             // 
             imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
             imageList.TransparentColor = System.Drawing.Color.Transparent;
-            imageList.Images.SetKeyName(0, "icons8-папка-50.icon");
-            imageList.Images.SetKeyName(1, "reload_update_refresh_icon_143703.png");
-            imageList.Images.SetKeyName(2, "Generica_25576.png");
-            imageList.Images.SetKeyName(3, "txt_4177.png");
-            imageList.Images.SetKeyName(4, "-forward_90600.png");
-            imageList.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
-            imageList.Images.SetKeyName(6, "document_96668.png");
-            imageList.Images.SetKeyName(7, "folderorangeopen_93000.png");
-            // 
-            // imageList1
-            // 
-            imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            imageList1.Images.SetKeyName(0, "icons8-папка-50.icon");
-            imageList1.Images.SetKeyName(1, "reload_update_refresh_icon_143703.png");
-            imageList1.Images.SetKeyName(2, "Generica_25576.png");
-            imageList1.Images.SetKeyName(3, "txt_4177.png");
-            imageList1.Images.SetKeyName(4, "-forward_90600.png");
-            imageList1.Images.SetKeyName(5, "bmp_file_name_extension_document_icon-icons.com_61581.png");
-            imageList1.Images.SetKeyName(6, "document_96668.png");
-            imageList1.Images.SetKeyName(7, "folderorangeopen_93000.png");
+            imageList.Images.SetKeyName(0, "folderorangeopen_93000.png");
+            imageList.Images.SetKeyName(1, "txt_4177.png");
+            imageList.Images.SetKeyName(2, "bmp_file_name_extension_document_icon-icons.com_61581.png");
+            imageList.Images.SetKeyName(3, "document_96668.png");
             // 
             // ListFiles
             // 
@@ -115,19 +98,18 @@ namespace Курсовая
             this.ListFiles.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListFiles.HideSelection = false;
             this.ListFiles.LabelEdit = true;
-            this.ListFiles.LargeImageList = imageList;
-            this.ListFiles.Location = new System.Drawing.Point(10, 62);
+            this.ListFiles.LargeImageList = imageList1;
+            this.ListFiles.Location = new System.Drawing.Point(0, 58);
             this.ListFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListFiles.Name = "ListFiles";
-            this.ListFiles.Size = new System.Drawing.Size(688, 348);
-            this.ListFiles.SmallImageList = imageList1;
+            this.ListFiles.Size = new System.Drawing.Size(712, 366);
+            this.ListFiles.SmallImageList = imageList;
             this.ListFiles.TabIndex = 0;
             this.ListFiles.UseCompatibleStateImageBehavior = false;
             this.ListFiles.View = System.Windows.Forms.View.Details;
             this.ListFiles.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.ListFiles_AfterLabelEdit);
             this.ListFiles.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListFiles_ColumnClick);
             this.ListFiles.ItemActivate += new System.EventHandler(this.ListFiles_ItemActivate);
-            this.ListFiles.SelectedIndexChanged += new System.EventHandler(this.ListFiles_SelectedIndexChanged);
             this.ListFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListFiles_MouseClick);
             // 
             // columnHeader1
@@ -154,9 +136,9 @@ namespace Курсовая
             // 
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CreateFileOrFolder,
-            this.CopyFileOrFolder,
-            this.CutFileOrFolder,
+            this.Create,
+            this.Cut,
+            this.Copy,
             this.Insert,
             this.Delete,
             this.Rename,
@@ -164,14 +146,14 @@ namespace Курсовая
             this.contextMenuStrip.Name = "contextMenuStrip1";
             this.contextMenuStrip.Size = new System.Drawing.Size(191, 172);
             // 
-            // CreateFileOrFolder
+            // Create
             // 
-            this.CreateFileOrFolder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Create.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.папкуToolStripMenuItem,
             this.файлToolStripMenuItem});
-            this.CreateFileOrFolder.Name = "CreateFileOrFolder";
-            this.CreateFileOrFolder.Size = new System.Drawing.Size(190, 24);
-            this.CreateFileOrFolder.Text = "Создать";
+            this.Create.Name = "Create";
+            this.Create.Size = new System.Drawing.Size(190, 24);
+            this.Create.Text = "Создать";
             // 
             // папкуToolStripMenuItem
             // 
@@ -187,19 +169,12 @@ namespace Курсовая
             this.файлToolStripMenuItem.Text = "Текстовый документ";
             this.файлToolStripMenuItem.Click += new System.EventHandler(this.CreateToFile);
             // 
-            // CopyFileOrFolder
+            // Copy
             // 
-            this.CopyFileOrFolder.Name = "CopyFileOrFolder";
-            this.CopyFileOrFolder.Size = new System.Drawing.Size(190, 24);
-            this.CopyFileOrFolder.Text = "Копировать";
-            this.CopyFileOrFolder.Click += new System.EventHandler(this.CopyFileOrFolder_Click);
-            // 
-            // CutFileOrFolder
-            // 
-            this.CutFileOrFolder.Name = "CutFileOrFolder";
-            this.CutFileOrFolder.Size = new System.Drawing.Size(190, 24);
-            this.CutFileOrFolder.Text = "Вырезать";
-            this.CutFileOrFolder.Click += new System.EventHandler(this.CutFileOrFolder_Click_1);
+            this.Copy.Name = "Copy";
+            this.Copy.Size = new System.Drawing.Size(190, 24);
+            this.Copy.Text = "Копировать";
+            this.Copy.Click += new System.EventHandler(this.CopyFileOrFolder_Click);
             // 
             // Insert
             // 
@@ -235,10 +210,10 @@ namespace Курсовая
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListDisk.FormattingEnabled = true;
-            this.ListDisk.Location = new System.Drawing.Point(624, 27);
+            this.ListDisk.Location = new System.Drawing.Point(616, 27);
             this.ListDisk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ListDisk.Name = "ListDisk";
-            this.ListDisk.Size = new System.Drawing.Size(86, 27);
+            this.ListDisk.Size = new System.Drawing.Size(96, 27);
             this.ListDisk.TabIndex = 4;
             this.ListDisk.SelectedIndexChanged += new System.EventHandler(this.ListDisk_SelectedIndexChanged);
             // 
@@ -282,7 +257,7 @@ namespace Курсовая
             // FilePathTextBox
             // 
             this.FilePathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FilePathTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.FilePathTextBox.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FilePathTextBox.Name = "FilePathTextBox";
             this.FilePathTextBox.Size = new System.Drawing.Size(538, 27);
             this.FilePathTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilePathTextBox_KeyDown);
@@ -310,7 +285,7 @@ namespace Курсовая
             this.SmallImages});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(710, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(712, 27);
             this.toolStrip2.TabIndex = 10;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -429,19 +404,36 @@ namespace Курсовая
             this.toolStripLabel2.Size = new System.Drawing.Size(92, 28);
             this.toolStripLabel2.Text = "Сортировка";
             // 
+            // Cut
+            // 
+            this.Cut.Name = "Cut";
+            this.Cut.Size = new System.Drawing.Size(190, 24);
+            this.Cut.Text = "Вырезать";
+            this.Cut.Click += new System.EventHandler(this.CutFileOrFolder);
+            // 
+            // imageList1
+            // 
+            imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            imageList1.Images.SetKeyName(0, "folderorangeopen_93000.png");
+            imageList1.Images.SetKeyName(1, "txt_4177.png");
+            imageList1.Images.SetKeyName(2, "bmp_file_name_extension_document_icon-icons.com_61581.png");
+            imageList1.Images.SetKeyName(3, "document_96668.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(710, 424);
+            this.ClientSize = new System.Drawing.Size(712, 424);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ListDisk);
             this.Controls.Add(this.ListFiles);
             this.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
@@ -462,14 +454,13 @@ namespace Курсовая
         #endregion
         private System.Windows.Forms.ComboBox ListDisk;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem CreateFileOrFolder;
+        private System.Windows.Forms.ToolStripMenuItem Create;
         private System.Windows.Forms.ToolStripMenuItem папкуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Delete;
-        private System.Windows.Forms.ToolStripMenuItem CutFileOrFolder;
         private System.Windows.Forms.ToolStripMenuItem Insert;
         private System.Windows.Forms.ToolStripMenuItem Rename;
-        private System.Windows.Forms.ToolStripMenuItem CopyFileOrFolder;
+        private System.Windows.Forms.ToolStripMenuItem Copy;
         private System.Windows.Forms.ToolStripMenuItem Refresh;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ListView ListFiles;
@@ -495,6 +486,7 @@ namespace Курсовая
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem Cut;
     }
 }
 

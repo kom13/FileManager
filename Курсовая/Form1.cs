@@ -47,7 +47,7 @@ namespace Курсовая
                 //Список всех папок
                 foreach (DirectoryInfo dirInfo in dirs)
                 {
-                    ListViewItem item = ListFiles.Items.Add(dirInfo.Name, 7);
+                    ListViewItem item = ListFiles.Items.Add(dirInfo.Name, 0);
                     item.Tag = dirInfo.FullName;
                     item.SubItems.Add(dirInfo.LastWriteTime.ToString());
                     item.SubItems.Add("папка");
@@ -60,65 +60,65 @@ namespace Курсовая
                     //если файл .txt
                     if (fileInfo.Extension == ".txt")
                     {
-                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 3);
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 1);
                         item.Tag = fileInfo.FullName;
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
                         item.SubItems.Add(fileInfo.Extension);
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 3} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2),1} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 3} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2),1} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 3} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2),1} МБ");
                         }
                     }
 
                     //если файл .bmp
                     else if (fileInfo.Extension == ".bmp")
                     {
-                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 5);
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 2);
                         item.Tag = fileInfo.FullName;
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
                         item.SubItems.Add(fileInfo.Extension);
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 5} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2),2} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 5} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2),2} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 5} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2),2} МБ");
                         }
                     }
                     //другие файлы
                     else
                     {
-                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 6);
+                        ListViewItem item = ListFiles.Items.Add(fileInfo.Name, 3);
                         item.Tag = fileInfo.FullName;
                         item.SubItems.Add(fileInfo.LastWriteTime.ToString());
                         item.SubItems.Add(fileInfo.Extension + "");
 
                         if (fileInfo.Length <= 1024)
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2), 5} байт");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length, 2),3} байт");
                         }
                         else if (fileInfo.Length <= (1024 * 1024))
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2), 6} КБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / 1024, 2),3} КБ");
                         }
                         else
                         {
-                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2), 6} МБ");
+                            item.SubItems.Add($"{Math.Round((float)fileInfo.Length / (1024 * 1024), 2),3} МБ");
                         }
                     }
                 }
@@ -245,33 +245,40 @@ namespace Курсовая
                 //Реальный путь
                 item.Tag = newFolderPath;
             }
-            catch (Exception f)
+            catch (Exception r)
             {
-                MessageBox.Show(f.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(r.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //создать файл txt
         private void CreateToFile(object sender, EventArgs e)
         {
-            int num = 1;
-            string newFile = "новый файл";
-            string path = Path.Combine(FilePath, newFile);
-            string newFilePath = path;
-
-            while (File.Exists(newFilePath + ".txt"))
+            try
             {
-                newFilePath = path + "(" + num + ")";
+                int num = 1;
+                string newFile = "новый файл";
+                string path = Path.Combine(FilePath, newFile);
+                string newFilePath = path;
 
-                num++;
+                while (File.Exists(newFilePath + ".txt"))
+                {
+                    newFilePath = path + "(" + num + ")";
+
+                    num++;
+                }
+
+                File.Create(newFilePath + ".txt");
+
+                ListViewItem item = ListFiles.Items.Add("новый файл" + (num == 1 ? ("") : ("(" + (num - 1) + ")")), 4);
+
+                //Реальный путь
+                item.Tag = newFilePath;
             }
-
-            File.Create(newFilePath + ".txt");
-
-            ListViewItem item = ListFiles.Items.Add("новый файл" + (num == 1 ? ("") : ("(" + (num - 1) + ")")), 4);
-
-            //Реальный путь
-            item.Tag = newFilePath;
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //обновить список
@@ -323,32 +330,47 @@ namespace Курсовая
         //удалить
         private void Delete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"Вы уверены, что хотите удалить {Active.FocusedItem.Text} ?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                try
+                if (MessageBox.Show($"Вы уверены, что хотите удалить {Active.FocusedItem.Text} ?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    foreach (ListViewItem item in ListFiles.SelectedItems)
+                    try
                     {
-                        string path = item.Tag.ToString();
-
-                        //если это файл
-                        if (File.Exists(path))
+                        foreach (ListViewItem item in ListFiles.SelectedItems)
                         {
-                            File.Delete(path);
-                        }
-                        //если это папка
-                        else if (Directory.Exists(path))
-                        {
-                            Directory.Delete(path);
-                        }
+                            string path = item.Tag.ToString();
 
-                        ListFiles.Items.Remove(item);
+                            //если это файл
+                            if (File.Exists(path))
+                            {
+                                File.Delete(path);
+                            }
+                            //если это папка
+                            if (Directory.Exists(path))
+                            {
+                                //удаление файлов, которые содержаться в выбранной папке
+                                DirectoryInfo dirInfo = new DirectoryInfo(path);
+
+                                foreach (FileInfo i in dirInfo.GetFiles())
+                                {
+                                    i.Delete();
+                                }
+                                //удаление папки
+                                Directory.Delete(path);
+                            }
+
+                            ListFiles.Items.Remove(item);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Папка не пуста.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception r)
-                {
-                    MessageBox.Show(r.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch
+            {
+                MessageBox.Show("Чтобы удалить, нужно выделить файл/папку", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -392,16 +414,27 @@ namespace Курсовая
         //копирование файлов/папок
         private void CopyFileOrFolder_Click(object sender, EventArgs e)
         {
-            if (ListFiles.SelectedItems.Count > 0)
+            try
             {
-                int i = 0;
-
-                foreach (ListViewItem item in ListFiles.SelectedItems)
+                if (ListFiles.SelectedItems.Count > 0)
                 {
-                    SelectedFiles[i++] = item.Tag.ToString();
-                }
+                    int i = 0;
 
-                IsMove = false;
+                    foreach (ListViewItem item in ListFiles.SelectedItems)
+                    {
+                        SelectedFiles[i++] = item.Tag.ToString();
+                    }
+
+                    IsMove = false;
+                }
+                else
+                {
+                    throw new Exception("Чтобы скопировать, нужно выделить файл/папку");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Чтобы вырезать, нужно выделить файл/папку", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -514,18 +547,29 @@ namespace Курсовая
         }
 
         //Вырезать файл/папку
-        private void CutFileOrFolder_Click_1(object sender, EventArgs e)
+        private void CutFileOrFolder(object sender, EventArgs e)
         {
-            if (ListFiles.SelectedItems.Count > 0)
+            try
             {
-                int i = 0;
-
-                foreach (ListViewItem item in ListFiles.SelectedItems)
+                if (ListFiles.SelectedItems.Count > 0)
                 {
-                    SelectedFiles[i++] = item.Tag.ToString();
-                }
+                    int i = 0;
 
-                IsMove = true;
+                    foreach (ListViewItem item in ListFiles.SelectedItems)
+                    {
+                        SelectedFiles[i++] = item.Tag.ToString();
+                    }
+
+                    IsMove = true;
+                }
+                else
+                {
+                    throw new Exception("Чтобы вырезать, нужно выделить файл/папку");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Чтобы вырезать, нужно выделить файл/папку", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -582,50 +626,55 @@ namespace Курсовая
         //сохранение измений переименования
         private void ListFiles_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            string newName = e.Label;
-
-            ListViewItem item = ListFiles.SelectedItems[0];
-
-            if (string.IsNullOrEmpty(newName))
+            try
             {
-                MessageBox.Show("Имя не должно быть пустым.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string newName = e.Label;
 
-                //Отменить изменения
-                e.CancelEdit = true;
-            }
-            //Имя файла содержит недопустимые символы
-            else if (!IsValidFileName(newName))
-            {
-                MessageBox.Show("Имя не должно содержать следующие символы:\n" + "< > : / \\ ? ' \" | *", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ListViewItem item = ListFiles.SelectedItems[0];
 
-                //Отменить изменения
-                e.CancelEdit = true;
-            }
-            //Если имя файла повторяется
-            else if (File.Exists(Path.Combine(FilePath, newName)))
-            {
-                MessageBox.Show("В текущем пути есть файл с таким же именем.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //Отменить изменения
-                e.CancelEdit = true;
-            }
-            else
-            {
-                //получаю путь со старым именем файла
-                string oldPath = Path.Combine(FilePathTextBox.Text, item.Tag.ToString());
-
-                //если это файл
-                if (File.Exists(oldPath))
+                if (newName == "" || newName == item.Text)
                 {
-                    //изменяю имя файла
-                    FileSystem.RenameFile(oldPath, newName);
+                    //Отменить изменения
+                    e.CancelEdit = true;
                 }
-                //если это папка
-                else if (Directory.Exists(oldPath))
+                //Имя файла содержит недопустимые символы
+                else if (!IsValidFileName(newName))
                 {
-                    //изменяю имя папки
-                    FileSystem.RenameDirectory(oldPath, newName);
+                    MessageBox.Show("Имя не должно содержать следующие символы:\n" + "< > : / \\ ? ' \" | *", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    //Отменить изменения
+                    e.CancelEdit = true;
                 }
+                //Если имя файла повторяется
+                else if (File.Exists(Path.Combine(FilePath, newName)) || Directory.Exists(Path.Combine(FilePath, newName)))
+                {
+                    MessageBox.Show("В текущем пути есть файл с таким же именем.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    //Отменить изменения
+                    e.CancelEdit = true;
+                }
+                else
+                {
+                    //получаю путь со старым именем файла
+                    string oldPath = Path.Combine(FilePathTextBox.Text, item.Tag.ToString());
+
+                    //если это файл
+                    if (File.Exists(oldPath))
+                    {
+                        //изменяю имя файла
+                        FileSystem.RenameFile(oldPath, newName);
+                    }
+                    //если это папка
+                    else if (Directory.Exists(oldPath))
+                    {
+                        //изменяю имя папки
+                        FileSystem.RenameDirectory(oldPath, newName);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                e.CancelEdit = true;
             }
         }
 
@@ -653,6 +702,7 @@ namespace Курсовая
             ListFiles.View = View.Tile;
         }
 
+        //маленькие значки
         private void SmallIcon_Click(object sender, EventArgs e)
         {
             ListFiles.View = View.SmallIcon;
@@ -669,11 +719,6 @@ namespace Курсовая
             {
                 ListFiles.Sorting = SortOrder.Descending;
             }
-        }
-
-        private void ListFiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
